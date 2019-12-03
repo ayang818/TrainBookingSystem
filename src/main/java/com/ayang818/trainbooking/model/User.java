@@ -1,4 +1,4 @@
-package com.ayang818.ssmtemplate.model;
+package com.ayang818.trainbooking.model;
 
 import java.io.Serializable;
 

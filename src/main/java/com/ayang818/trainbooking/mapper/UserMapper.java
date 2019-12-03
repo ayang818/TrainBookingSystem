@@ -1,6 +1,6 @@
-package com.ayang818.ssmtemplate.mapper;
+package com.ayang818.trainbooking.mapper;
 
-import com.ayang818.ssmtemplate.model.User;
+import com.ayang818.trainbooking.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

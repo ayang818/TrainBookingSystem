@@ -13,7 +13,7 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:component-scan base-package="com.ayang818.ssmtemplate" >
+    <context:component-scan base-package="com.ayang818.trainbooking" >
         <!--配置哪些注解不扫描-->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
@@ -40,7 +40,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" id="mapperScanner">
-        <property name="basePackage" value="com.ayang818.ssmtemplate.mapper"/>
+        <property name="basePackage" value="com.ayang818.trainbooking.mapper"/>
     </bean>
 
     <!-- 通用Mapper的拓展就是自定义通用Mapper中没有的功能，就是增加通用Mapper没有提供的功能 -->

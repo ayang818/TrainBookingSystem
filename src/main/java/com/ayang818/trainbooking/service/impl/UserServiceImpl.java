@@ -1,8 +1,8 @@
-package com.ayang818.ssmtemplate.service.impl;
+package com.ayang818.trainbooking.service.impl;
 
-import com.ayang818.ssmtemplate.mapper.UserMapper;
-import com.ayang818.ssmtemplate.model.User;
-import com.ayang818.ssmtemplate.service.UserService;
+import com.ayang818.trainbooking.mapper.UserMapper;
+import com.ayang818.trainbooking.model.User;
+import com.ayang818.trainbooking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

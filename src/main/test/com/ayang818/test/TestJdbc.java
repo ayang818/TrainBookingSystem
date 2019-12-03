@@ -1,7 +1,7 @@
 package com.ayang818.test;
 
-import com.ayang818.ssmtemplate.model.User;
-import com.ayang818.ssmtemplate.service.UserService;
+import com.ayang818.trainbooking.model.User;
+import com.ayang818.trainbooking.service.UserService;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
