@@ -54,5 +54,6 @@
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:druid:1.1.21" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.10" level="project" />
   </component>
 </module>

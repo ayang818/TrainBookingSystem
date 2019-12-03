@@ -17,6 +17,7 @@
 
     <!--开启SpringMVC注解的支持-->
     <mvc:annotation-driven/>
+    <!-- 使用spring mvc 自己的拦截规则 -->
     <mvc:default-servlet-handler/>
 
 

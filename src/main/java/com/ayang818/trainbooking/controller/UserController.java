@@ -19,7 +19,7 @@ public class UserController {
     public String list(Model model) {
         List<User> userList = userService.list();
         model.addAttribute("userList", userList);
-        return "index";
+        return "redirect:login";
     }
 
 }
