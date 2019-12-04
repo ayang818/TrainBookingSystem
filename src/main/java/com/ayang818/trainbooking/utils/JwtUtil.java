@@ -46,7 +46,6 @@ public class JwtUtil {
 
     private static SecretKey generalKey() {
         String stringKey = JwtKey.SECRETKEY;
-        // 本地的密码解码
         byte[] encodedKey = Base64.decodeBase64(stringKey);
         // 根据给定的字节数组使用AES加密算法构造一个密钥
         SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
@@ -59,9 +58,8 @@ public class JwtUtil {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
         Map<String, Object> claims = new HashMap<>();
-        claims.put("uid", "123456");
+        claims.put("uid", "1");
         claims.put("user_name", "admin");
-        claims.put("nick_name", "X-rapido");
         SecretKey key = generalKey();
 
         JwtBuilder builder = Jwts.builder()

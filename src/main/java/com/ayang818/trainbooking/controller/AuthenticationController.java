@@ -49,7 +49,7 @@ public class AuthenticationController {
             return "login";
         }
         LOGGER.info("用户:{}登录成功", username);
-        return "index";
+        return "admin/admin";
     }
 
     @GetMapping("/register")

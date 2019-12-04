@@ -2,6 +2,7 @@ package com.ayang818.trainbooking.interceptor;
 
 import com.ayang818.trainbooking.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Author 杨丰畅
  * @Date 2019/12/4 20:42
  **/
-@Service
+@Component
 public class SessionInterceptor implements HandlerInterceptor {
 
     @Autowired
