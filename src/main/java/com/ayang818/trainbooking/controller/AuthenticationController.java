@@ -1,7 +1,12 @@
 package com.ayang818.trainbooking.controller;
 
+import com.ayang818.trainbooking.dto.LoginfoDto;
+import com.ayang818.trainbooking.dto.RegisterInfoDto;
+import com.ayang818.trainbooking.model.User;
+import com.ayang818.trainbooking.service.AuthenticationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  **/
 @Controller
 public class AuthenticationController {
+    @Autowired
+    private AuthenticationService authenticationService;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
 
     @GetMapping("/login")
@@ -25,20 +33,35 @@ public class AuthenticationController {
     @PostMapping("/login")
     public String doLogin(@RequestParam String username,
                           @RequestParam String password) {
-        System.out.println(username +"&"+ password);
-        return null;
+        LOGGER.info("用户:{}尝试登录", username);
+        LoginfoDto loginfoDto = new LoginfoDto();
+        loginfoDto.setUsername(username);
+        loginfoDto.setUsername(password);
+        User user = authenticationService.tryLogin(loginfoDto);
+        if (user == null) {
+            LOGGER.info("用户:{}登录失败", username);
+            return "login";
+        }
+        return "index";
     }
 
     @GetMapping("/register")
     public String register() {
-        return null;
+        return "register";
     }
 
     @PostMapping("/register")
     public String doRegister(@RequestParam String username,
                              @RequestParam String password,
                              @RequestParam String email) {
-        System.out.println(username + "&" + password + "&" + email);
-        return null;
+        LOGGER.info("用户:{}尝试注册, 邮箱:{}", username, email);
+        RegisterInfoDto registerInfoDto = new RegisterInfoDto();
+        registerInfoDto.setUsername(username);
+        registerInfoDto.setPassword(password);
+        registerInfoDto.setEmail(email);
+        if (!authenticationService.tryRegister(registerInfoDto)) {
+            return "register";
+        }
+        return "login";
     }
 }

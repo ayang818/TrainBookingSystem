@@ -11,6 +11,7 @@
     <div class="col-lg-6 col-md-0 	col-sm-0 col-xs-0">
     </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="margin: 300px auto;">
+            <div class="container">
             <h1>火车订票系统 · 登陆</h1>
             <form action="/login" method="post">
                 <div class="form-group">
@@ -22,10 +23,19 @@
                     <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码" aria-describedby="basic-addon1">
                 </div>
                 <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="type" id="user" value="1"> 普通用户
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="type" id="admin" value="2"> 管理员
+                    </label>
+                </div>
+                <div class="form-group">
                     <button class="btn btn-success" type="submit">登陆</button>
                     <a class="btn btn-info" href="/register">注册</a>
                 </div>
             </form>
+            </div>
         </div>
         <div class="col-lg-3 col-md-0 col-sm-0 col-xs-0"></div>
 </body>
