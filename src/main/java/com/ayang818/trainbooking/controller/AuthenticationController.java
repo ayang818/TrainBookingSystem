@@ -1,5 +1,6 @@
 package com.ayang818.trainbooking.controller;
 
+import com.ayang818.trainbooking.constpool.UserType;
 import com.ayang818.trainbooking.dto.LoginfoDto;
 import com.ayang818.trainbooking.dto.RegisterInfoDto;
 import com.ayang818.trainbooking.model.User;
@@ -32,11 +33,13 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public String doLogin(@RequestParam String username,
-                          @RequestParam String password) {
+                          @RequestParam String password,
+                          @RequestParam Integer type) {
         LOGGER.info("用户:{}尝试登录", username);
         LoginfoDto loginfoDto = new LoginfoDto();
         loginfoDto.setUsername(username);
-        loginfoDto.setUsername(password);
+        loginfoDto.setPassword(password);
+        loginfoDto.setType(type);
         User user = authenticationService.tryLogin(loginfoDto);
         if (user == null) {
             LOGGER.info("用户:{}登录失败", username);
@@ -59,6 +62,7 @@ public class AuthenticationController {
         registerInfoDto.setUsername(username);
         registerInfoDto.setPassword(password);
         registerInfoDto.setEmail(email);
+        registerInfoDto.setType(UserType.USER);
         if (!authenticationService.tryRegister(registerInfoDto)) {
             return "register";
         }

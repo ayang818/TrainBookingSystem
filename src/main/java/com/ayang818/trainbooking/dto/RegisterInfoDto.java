@@ -7,4 +7,5 @@ public class RegisterInfoDto {
     private String username;
     private String password;
     private String email;
+    private Integer type;
 }
