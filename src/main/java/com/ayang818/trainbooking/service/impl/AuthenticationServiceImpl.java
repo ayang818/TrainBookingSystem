@@ -5,6 +5,8 @@ import com.ayang818.trainbooking.dto.RegisterInfoDto;
 import com.ayang818.trainbooking.mapper.AuthenticationMapper;
 import com.ayang818.trainbooking.model.User;
 import com.ayang818.trainbooking.service.AuthenticationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.util.List;
  **/
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationServiceImpl.class);
+
     @Autowired
     private AuthenticationMapper authenticationMapper;
 
@@ -35,7 +39,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         try {
             authenticationMapper.insertUser(registerInfoDto);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info("用户名 {} 已存在", registerInfoDto.getUsername());
             return false;
         }
         return true;

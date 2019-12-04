@@ -35,6 +35,9 @@ public class AuthenticationController {
     public String doLogin(@RequestParam String username,
                           @RequestParam String password,
                           @RequestParam Integer type) {
+        if (username == null || password == null || "".equals(username) || "".equals(password)) {
+            return "login";
+        }
         LOGGER.info("用户:{}尝试登录", username);
         LoginfoDto loginfoDto = new LoginfoDto();
         loginfoDto.setUsername(username);
@@ -45,6 +48,7 @@ public class AuthenticationController {
             LOGGER.info("用户:{}登录失败", username);
             return "login";
         }
+        LOGGER.info("用户:{}登录成功", username);
         return "index";
     }
 
@@ -57,6 +61,9 @@ public class AuthenticationController {
     public String doRegister(@RequestParam String username,
                              @RequestParam String password,
                              @RequestParam String email) {
+        if (username == null || password == null || email == null || "".equals(username) || "".equals(password) || "".equals(email)) {
+            return "register";
+        }
         LOGGER.info("用户:{}尝试注册, 邮箱:{}", username, email);
         RegisterInfoDto registerInfoDto = new RegisterInfoDto();
         registerInfoDto.setUsername(username);
@@ -66,6 +73,7 @@ public class AuthenticationController {
         if (!authenticationService.tryRegister(registerInfoDto)) {
             return "register";
         }
+        LOGGER.info("用户:{}注册成功, 邮箱:{}", username, email);
         return "login";
     }
 }

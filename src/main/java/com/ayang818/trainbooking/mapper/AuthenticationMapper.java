@@ -11,7 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface AuthenticationMapper {
-    @Select("select * from user where username=#{username} and password=#{password}")
+    @Select("select * from user where username=#{username} and password=#{password} and type=#{type}")
     List<User> listOne(LoginfoDto loginfoDto);
 
     @Insert("insert into user(username, password, email, type) values(#{username}, #{password}, #{email}, #{type})")
