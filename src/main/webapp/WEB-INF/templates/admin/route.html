@@ -11,5 +11,30 @@
     <div>
         <div th:include="admin/navigation :: nav"></div>
     </div>
+    <div class="col-lg-3 col-md-3 col-xs-3" >
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        <h1>线路概览</h1>
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>起点</th>
+                <th>终点</th>
+                <th>路线</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="route : ${session.routes}">
+                <td th:text="${route.getId()}"></td>
+                <td th:text="${route.getStartStation()}"></td>
+                <td th:text="${route.getEndStation()}"></td>
+                <td >
+                    <span th:each="stations,index : ${route.getStationList()}" th:if="${route.getStationList().size()} != 0" th:text="${stations.getStationName()}+' '"></span>
+                </td>
+                <td><a class="btn btn-danger" th:href="@{/admin/deleteRoute(routeId=${route.getId()})}" role="button">删除路线</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-3 col-md-3 col-xs-3">
+    </div>
     </body>
 </html>

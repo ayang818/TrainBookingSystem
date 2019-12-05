@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface AdminService {
+public interface StationService {
     Boolean addStation(String stationName);
     List<Station> listStation();
     void deleteStation(Integer stationId);
     void modifyStation(Integer stationId, String stationName);
+    Station selectOne(Integer id);
 }

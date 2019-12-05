@@ -2,14 +2,14 @@ package com.ayang818.trainbooking.service.impl;
 
 import com.ayang818.trainbooking.mapper.StationMapper;
 import com.ayang818.trainbooking.model.Station;
-import com.ayang818.trainbooking.service.AdminService;
+import com.ayang818.trainbooking.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class StationServiceImpl implements StationService {
     @Autowired
     StationMapper stationMapper;
 
@@ -32,5 +32,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void modifyStation(Integer stationId, String stationName) {
         stationMapper.updateStation(stationId, stationName);
+    }
+
+    @Override
+    public Station selectOne(Integer id) {
+        Station station = stationMapper.selectOne(id);
+        return station;
     }
 }

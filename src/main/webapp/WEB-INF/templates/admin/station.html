@@ -23,7 +23,7 @@
             <tr th:each="station : ${session.stations}">
                 <td th:text="${station.getId()}"></td>
                 <td th:text="${station.getStationName()}"></td>
-                <td><a class="btn btn-default" th:href="@{/admin/deleteStation(stationId=${station.getId()})}" role="button">删除站点</a></td>
+                <td><a class="btn btn-danger" th:href="@{/admin/deleteStation(stationId=${station.getId()})}" role="button">删除站点</a></td>
             </tr>
         </table>
     </div>

@@ -18,4 +18,7 @@ public interface StationMapper {
 
     @Update("update station set station_name=#{stationName} where id = #{stationId}")
     void updateStation(Integer stationId, String stationName);
+
+    @Select("select * from station where id=${id}")
+    Station selectOne(Integer id);
 }
