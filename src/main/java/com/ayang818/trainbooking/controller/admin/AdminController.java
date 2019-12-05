@@ -25,9 +25,10 @@ public class AdminController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
 
 
-
-
-
+    /**
+     * Desc 路线
+     * @return
+     */
     @GetMapping("/admin/route")
     public String getRoute() {
         return "admin/route";
@@ -38,6 +39,10 @@ public class AdminController {
         return "admin/addRoute";
     }
 
+    /**
+     * Desc 车次
+     * @return
+     */
     @GetMapping("/admin/trainNumber")
     public String getTrainNumber() {
         return "admin/trainNumber";

@@ -18,7 +18,7 @@
                     <li><a href="/admin/addTrainNumber">添加车次</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span>欢迎 , </span>xxx</a></li>
+                    <li><a href="#" th:text="'欢迎, '+${session.userName}"></a></li>
                 </ul>
             </div>
         </nav>

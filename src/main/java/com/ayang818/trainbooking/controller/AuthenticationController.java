@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @ClassName AuthenticationController
  * @Dessription TODO
@@ -32,7 +35,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public String doLogin(@RequestParam String username,
+    public String doLogin(HttpServletRequest request, HttpServletResponse response, @RequestParam String username,
                           @RequestParam String password,
                           @RequestParam Integer type) {
         if (username == null || password == null || "".equals(username) || "".equals(password)) {
@@ -49,6 +52,7 @@ public class AuthenticationController {
             return "login";
         }
         LOGGER.info("用户:{}登录成功", username);
+        request.getSession().setAttribute("userName", username);
         return "redirect:admin/station";
     }
 
