@@ -11,6 +11,30 @@
     <div>
         <div th:include="admin/navigation :: nav"></div>
     </div>
-
+    <div class="col-lg-4 col-md-4 col-xs-4"></div>
+    <div class="col-lg-4 col-md-4 col-xs-4">
+        <h1>添加线路</h1>
+        <form action="/admin/addRoute" method="post">
+            <div class="form-group">
+                <label for="startStation">起始站</label>
+                <input type="text" name="startStation" class="form-control" id="startStation" placeholder="输入站点名称">
+            </div>
+            <div class="form-group">
+                <label for="endStation">终点站</label>
+                <input type="text" name="endStation" class="form-control" id="endStation" placeholder="输入站点名称">
+            </div>
+            <div class="form-group">
+                <label for="routeCode">具体路径</label>
+                <input type="text" name="routeCode" class="form-control" id="routeCode" placeholder="输入站点名称">
+            </div>
+            <button type="submit" class="btn btn-primary">添加</button>
+        </form>
+    </div>
+    <div class="col-lg-4 col-md-4 col-xs-4">
+        <h3>Tips</h3>
+        1. 具体路径直接使用每个站点的id来表示，比如北京站点id为1，上海站点id为2，广州id为3，那么北京 --> 上海 --> 广州的具体路径就是123<br>
+        2. 每添加一条站点数超过2的站点，系统会自动添加其中的所有的连续子站点，比如添加一条路径为123，那么12，23也会被添加。<br>
+    </div>
+    </body>
     </body>
 </html>

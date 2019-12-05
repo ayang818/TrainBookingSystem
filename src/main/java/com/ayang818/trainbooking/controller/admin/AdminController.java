@@ -25,19 +25,6 @@ public class AdminController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
 
 
-    /**
-     * Desc 路线
-     * @return
-     */
-    @GetMapping("/admin/route")
-    public String getRoute() {
-        return "admin/route";
-    }
-
-    @GetMapping("/admin/addRoute")
-    public String getAddRoute() {
-        return "admin/addRoute";
-    }
 
     /**
      * Desc 车次
