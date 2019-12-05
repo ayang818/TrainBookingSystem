@@ -8,27 +8,9 @@
     <title>管理员界面</title>
 </head>
 <body>
-<!--    <div>-->
-<!--        <div th:include="navigtion :: nav"></div>-->
-<!--    </div>-->
-    <!--  未组件化的导航栏  -->
-    <nav class="navbar navbar-default">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">火车订票系统</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="/admin/station">站点概览</a></li>
-                <li><a href="/admin/addStation">添加站点</a></li>
-                <li><a href="/admin/route">线路概览</a></li>
-                <li><a href="/admin/addRoute">添加线路</a></li>
-                <li><a href="/admin/trainNumber">车次概览</a></li>
-                <li><a href="/admin/addTrainNumber">添加车次</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span>欢迎 , </span>xxx</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div>
+        <div th:include="admin/navigation :: nav"></div>
+    </div>
+
 </body>
 </html>

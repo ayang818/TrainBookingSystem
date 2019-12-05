@@ -8,23 +8,25 @@
     <title>站点概览</title>
 </head>
     <body>
-    <nav class="navbar navbar-default">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">火车订票系统</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="/admin/station">站点概览</a></li>
-                <li><a href="/admin/addStation">添加站点</a></li>
-                <li><a href="/admin/route">线路概览</a></li>
-                <li><a href="/admin/addRoute">添加线路</a></li>
-                <li><a href="/admin/trainNumber">车次概览</a></li>
-                <li><a href="/admin/addTrainNumber">添加车次</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span>欢迎 , </span>xxx</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div>
+        <div th:include="admin/navigation :: nav"></div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-xs-3"></div>
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        <h1>所有站点</h1>
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>站点名称</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="station : ${session.stations}">
+                <td th:text="${station.getId()}"></td>
+                <td th:text="${station.getStationName()}"></td>
+                <td><a class="btn btn-default" th:href="@{/admin/deleteStation(stationId=${station.getId()})}" role="button">删除站点</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-3 col-md-3 col-xs-3"></div>
     </body>
 </html>

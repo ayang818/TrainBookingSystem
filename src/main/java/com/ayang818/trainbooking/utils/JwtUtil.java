@@ -1,8 +1,6 @@
 package com.ayang818.trainbooking.utils;
 
-import com.alibaba.fastjson.JSON;
 import com.ayang818.trainbooking.constpool.JwtKey;
-import com.ayang818.trainbooking.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -31,7 +29,7 @@ public class JwtUtil {
         try {
             jwt = JwtUtil.createJWT(JwtKey.JWT_ID, "admin", jsonString, JwtKey.JWT_TTL);
         } catch (Exception e) {
-            LOGGER.error("生成jwt密钥失败, 传入json {}", jsonString);
+            LOGGER.error("生成jwt密钥失败, 传入json为 {}", jsonString);
         }
         return jwt;
     }

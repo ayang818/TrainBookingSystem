@@ -49,7 +49,7 @@ public class AuthenticationController {
             return "login";
         }
         LOGGER.info("用户:{}登录成功", username);
-        return "admin/admin";
+        return "redirect:admin/station";
     }
 
     @GetMapping("/register")
@@ -74,6 +74,6 @@ public class AuthenticationController {
             return "register";
         }
         LOGGER.info("用户:{}注册成功, 邮箱:{}", username, email);
-        return "login";
+        return "redirect:login";
     }
 }
