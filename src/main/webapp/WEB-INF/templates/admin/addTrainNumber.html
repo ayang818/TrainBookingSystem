@@ -11,6 +11,28 @@
     <div>
         <div th:include="admin/navigation :: nav"></div>
     </div>
-
+    <div class="col-lg-4 col-md-4 col-xs-4" >
+        <div th:each="route : ${session.routes}">
+            <p th:text="'Id : ' + ${route.getId()} + ' 起始站点 : ' + ${route.getStartStation()} + ' 最终站点 : ' + ${route.getEndStation()}"></p>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-xs-4">
+        <h1>添加车次</h1>
+        <form action="/admin/addRoute" method="post">
+            <div class="form-group">
+                <label for="route">选择列车路线</label>
+                <select class="form-control" id="route" name="route">
+                    <option th:each="route : ${session.routes}" th:value="${route.getId()}" th:text="'Id : ' + ${route.getId()} + ' 起始站点 : ' + ${route.getStartStation()} + ' 最终站点 : ' + ${route.getEndStation()}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="trainId">列车编号</label>
+                <input type="text" name="trainId" class="form-control" id="trainId" placeholder="请输入列车编号">
+            </div>
+            <button type="submit" class="btn btn-primary">添加</button>
+        </form>
+    </div>
+    <div class="col-lg-4 col-md-4 col-xs-4">
+    </div>
     </body>
 </html>
