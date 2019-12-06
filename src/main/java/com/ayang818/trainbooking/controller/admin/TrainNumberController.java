@@ -1,18 +1,20 @@
 package com.ayang818.trainbooking.controller.admin;
 
 import com.ayang818.trainbooking.model.Route;
+import com.ayang818.trainbooking.model.TrainNumber;
 import com.ayang818.trainbooking.service.RouteService;
 import com.ayang818.trainbooking.service.TrainNumberService;
-import com.ayang818.trainbooking.service.impl.TrainNumberServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -24,15 +26,29 @@ import java.util.List;
 @Controller
 public class TrainNumberController {
     private static final Logger LOGGER = LoggerFactory.getLogger(TrainNumberController.class);
-
+    public static final String FORMAT_PATTERN = "YYYY-MM-DD HH:mm";
     @Autowired
     TrainNumberService trainNumberService;
 
     @Autowired
     RouteService routeService;
 
-    @PostMapping
-    public String doAddTrainNumber(HttpServletRequest request, HttpServletResponse response) {
+    @PostMapping("/admin/addTrainNumber")
+    public String doAddTrainNumber(HttpServletRequest request, HttpServletResponse response,
+                                   @RequestParam Integer routeId,
+                                   @RequestParam String trainId,
+                                   @RequestParam String startTime,
+                                   @RequestParam String endTime,
+                                   @RequestParam Integer ticketNumber) {
+        LocalDateTime startTimeFormat = LocalDateTime.parse(startTime);
+        LocalDateTime endTimeFormat = LocalDateTime.parse(endTime);
+        TrainNumber trainNumber = new TrainNumber();
+        trainNumber.setRouteId(routeId);
+        trainNumber.setTrainId(trainId);
+        trainNumber.setStartTime(startTimeFormat);
+        trainNumber.setEndTime(endTimeFormat);
+        trainNumber.setTicketNumber(ticketNumber);
+        LOGGER.info(trainNumber.toString());
         return "redirect:/admin/addTrainNumber";
     }
 
