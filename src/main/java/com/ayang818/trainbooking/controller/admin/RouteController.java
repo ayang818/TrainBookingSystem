@@ -66,8 +66,14 @@ public class RouteController {
                 routes.add(route);
             }
         }
-        LOGGER.info("最长路线为{}, 共解析出{}条路线", Arrays.toString(stations), count);
+        LOGGER.info("最长路线为{}, 共解析出{}条路线", Arrays.toString(stations), count*2);
         for (Route route : routes) {
+            StringBuilder reverseString = new StringBuilder();
+            for (int i = 0; i < route.getRouteCode().length(); i++) {
+                reverseString.append(route.getRouteCode().charAt(i));
+            }
+            // 添加逆序的路线
+            routeService.addRoute(route.getEndStation(), route.getStartStation(), reverseString.toString());
             routeService.addRoute(route.getStartStation(), route.getEndStation(), route.getRouteCode());
         }
         return "redirect:/admin/addRoute";
