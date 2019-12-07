@@ -1,6 +1,9 @@
 package com.ayang818.trainbooking.service;
 
+import com.ayang818.trainbooking.model.TrainNumber;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName TrainNumberService
@@ -10,5 +13,11 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public interface TrainNumberService {
+
+    void addTrainNumber(TrainNumber trainNumber);
+
+    List<TrainNumber> listTrainNumber();
+
+    void deleteById(Integer trainNumberId);
 
 }

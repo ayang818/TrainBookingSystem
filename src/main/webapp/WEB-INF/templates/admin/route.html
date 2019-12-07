@@ -27,9 +27,7 @@
                 <td th:text="${route.getId()}"></td>
                 <td th:text="${route.getStartStation()}"></td>
                 <td th:text="${route.getEndStation()}"></td>
-                <td >
-                    <span th:each="stations,index : ${route.getStationList()}" th:if="${route.getStationList().size()} != 0" th:text="${stations.getStationName()}+' '"></span>
-                </td>
+                <td th:text="${route.getStationDetails()}"></td>
                 <td><a class="btn btn-danger" th:href="@{/admin/deleteRoute(routeId=${route.getId()})}" role="button">删除路线</a></td>
             </tr>
         </table>

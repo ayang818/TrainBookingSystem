@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
 public class RouteController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RouteController.class);
+    public static final Map<Integer, Station> HASH_MAP = new ConcurrentHashMap<>();
 
     @Autowired
     RouteService routeService;
@@ -45,6 +44,7 @@ public class RouteController {
             for (int j = 0; j < stations.length - i + 1; j++) {
                 StringBuilder stringBuilder = new StringBuilder();
                 Route route = new Route();
+                // 找到所有子路径
                 for (int k = j; k < j+i; k++) {
                     if (k == j) {
                         startStationId = Integer.valueOf(stations[k]);
@@ -83,18 +83,9 @@ public class RouteController {
     public String getRoute(HttpServletRequest request, HttpServletResponse response) {
         List<Route> routes = routeService.listRoutes();
         LOGGER.info("开始解析路线途经站点");
-        int index = 0;
         for (Route route : routes) {
-            List<Station> stationList = new ArrayList<>(16);
             String routeCode = route.getRouteCode();
-            String[] stations = routeCode.split("-");
-            for (String stationNumber : stations) {
-                Station station = stationService.selectOne(Integer.valueOf(stationNumber));
-                if (station != null) {
-                    stationList.add(station);
-                }
-            }
-            route.setStationList(stationList);
+            route.setStationDetails(routeService.parseCodeToDetails(routeCode));
         }
         LOGGER.info("解析路线完毕");
         request.getSession().setAttribute("routes", routes);
@@ -112,5 +103,9 @@ public class RouteController {
     public String deleteRoute(@RequestParam Integer routeId) {
         routeService.deleteById(routeId);
         return "redirect:/admin/route";
+    }
+
+    public Map<Integer, Station> getCache() {
+        return  HASH_MAP;
     }
 }

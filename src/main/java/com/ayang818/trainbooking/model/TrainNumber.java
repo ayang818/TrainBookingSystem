@@ -27,4 +27,9 @@ public class TrainNumber {
      * 车票总数
      */
     private Integer ticketNumber;
+
+    /**
+     * 路线具体 (数据库无关)
+     */
+    private String routeDetail;
 }

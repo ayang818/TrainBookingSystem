@@ -11,5 +11,30 @@
     <div>
         <div th:include="admin/navigation :: nav"></div>
     </div>
+    <div class="col-lg-3 col-md-3 col-xs-3"></div>
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        <h1>车次概览</h1>
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>列车路线</th>
+                <th>列车编号</th>
+                <th>出发时间</th>
+                <th>到达时间</th>
+                <th>票总数</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="trainNumber : ${session.trainNumbers}">
+                <td th:text="${trainNumber.getId()}"></td>
+                <td th:text="${trainNumber.getRouteDetail()}"></td>
+                <td th:text="${trainNumber.getTrainId()}"></td>
+                <td th:text="${trainNumber.getStartTime()}"></td>
+                <td th:text="${trainNumber.getEndTime()}"></td>
+                <td th:text="${trainNumber.getTicketNumber()}"></td>
+                <td><a class="btn btn-danger" th:href="@{/admin/deleteTrainNumber(trainNumberId=${trainNumber.getId()})}" role="button">删除站点</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-3 col-md-3 col-xs-3"></div>
     </body>
 </html>

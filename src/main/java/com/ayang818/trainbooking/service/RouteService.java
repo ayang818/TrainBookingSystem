@@ -12,4 +12,8 @@ public interface RouteService {
     List<Route> listRoutes();
 
     void deleteById(Integer routeId);
+
+    Route selectById(Integer routeId);
+
+    String parseCodeToDetails(String routeCode);
 }

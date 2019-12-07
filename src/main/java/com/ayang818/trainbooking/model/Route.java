@@ -11,5 +11,5 @@ public class Route {
     private String startStation;
     private String endStation;
     private String routeCode;
-    private List<Station> stationList;
+    private String stationDetails;
 }

@@ -1,8 +1,10 @@
 package com.ayang818.trainbooking.controller.admin;
 
 import com.ayang818.trainbooking.model.Route;
+import com.ayang818.trainbooking.model.Station;
 import com.ayang818.trainbooking.model.TrainNumber;
 import com.ayang818.trainbooking.service.RouteService;
+import com.ayang818.trainbooking.service.StationService;
 import com.ayang818.trainbooking.service.TrainNumberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName TrainNumberController
@@ -33,6 +36,9 @@ public class TrainNumberController {
     @Autowired
     RouteService routeService;
 
+    @Autowired
+    StationService stationService;
+
     @PostMapping("/admin/addTrainNumber")
     public String doAddTrainNumber(HttpServletRequest request, HttpServletResponse response,
                                    @RequestParam Integer routeId,
@@ -49,11 +55,26 @@ public class TrainNumberController {
         trainNumber.setEndTime(endTimeFormat);
         trainNumber.setTicketNumber(ticketNumber);
         LOGGER.info(trainNumber.toString());
+        trainNumberService.addTrainNumber(trainNumber);
         return "redirect:/admin/addTrainNumber";
     }
 
+    @GetMapping("/admin/deleteTrainNumber")
+    public String deleteTrainNumber(@RequestParam Integer trainNumberId) {
+        trainNumberService.deleteById(trainNumberId);
+        return "redirect:/admin/trainNumber";
+    }
+
     @GetMapping("/admin/trainNumber")
-    public String getTrainNumber() {
+    public String getTrainNumber(HttpServletRequest request, HttpServletResponse response) {
+        List<TrainNumber> trainNumbers = trainNumberService.listTrainNumber();
+        for (TrainNumber trainNumber : trainNumbers) {
+            Route route = routeService.selectById(trainNumber.getRouteId());
+            String routeCode = route.getRouteCode();
+            String routeDetails = routeService.parseCodeToDetails(routeCode);
+            trainNumber.setRouteDetail(routeDetails);
+        }
+        request.getSession().setAttribute("trainNumbers", trainNumbers);
         return "admin/trainNumber";
     }
 

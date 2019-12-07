@@ -16,4 +16,7 @@ public interface RouteMapper {
 
     @Delete("delete from route where id=#{routeId}")
     void deleteById(Integer routeId);
+
+    @Select("select * from route where id = #{routeId}")
+    Route selectById(Integer routeId);
 }
