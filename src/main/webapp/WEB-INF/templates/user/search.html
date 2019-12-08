@@ -33,6 +33,24 @@
         </div>
         <button type="submit" class="btn btn-primary">查询</button>
     </form>
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>路线</th>
+            <th>发车时间</th>
+            <th>到达时间</th>
+            <th>票数/张</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="result : ${session.results}">
+            <td th:text="${result.getId()}"></td>
+            <td th:text="${result.getRouteDetail()}"></td>
+            <td th:text="${result.getStartTime()}"></td>
+            <td th:text="${result.getEndTime()}"></td>
+            <td th:text="${result.getTicketNumber()}"></td>
+            <td><a class="btn btn-success" href="#" role="button">购票</a></td>
+        </tr>
+    </table>
 </div>
 <div class="col-lg-3 col-md-3 col-xs-3"></div>
 </body>

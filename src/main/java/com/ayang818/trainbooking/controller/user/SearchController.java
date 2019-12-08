@@ -38,16 +38,27 @@ public class SearchController {
     @Autowired
     private SearchTicketService searchTicketService;
 
+    @Autowired
+    private RouteService routeService;
+
     @PostMapping("/user/searchTicket")
-    public String doSearchTicket(@RequestParam Integer startStation,
+    public String doSearchTicket(HttpServletRequest request,
+                                 HttpServletResponse response,
+                                 @RequestParam Integer startStation,
                                  @RequestParam Integer endStation,
                                  @RequestParam String startTime) {
         SearchDto searchDto = new SearchDto();
         searchDto.setStartStation(startStation);
         searchDto.setEndStation(endStation);
         searchDto.setStartTime(startTime);
-        List<TrainNumber> search = searchTicketService.search(searchDto);
-        LOGGER.info(search.toString());
+        List<TrainNumber> trainNumbers = searchTicketService.search(searchDto);
+        for (TrainNumber trainNumber : trainNumbers) {
+            Integer routeId = trainNumber.getRouteId();
+            Route route = routeService.selectById(routeId);
+            trainNumber.setRouteDetail(routeService.parseCodeToDetails(route.getRouteCode()));
+        }
+        LOGGER.info(trainNumbers.toString());
+        request.getSession().setAttribute("results", trainNumbers);
         return "redirect:/user/searchTicket";
     }
 

@@ -2,7 +2,6 @@ package com.ayang818.trainbooking.service.impl;
 
 import com.ayang818.trainbooking.dto.SearchDto;
 import com.ayang818.trainbooking.mapper.RouteMapper;
-import com.ayang818.trainbooking.mapper.StationMapper;
 import com.ayang818.trainbooking.model.Route;
 import com.ayang818.trainbooking.model.Station;
 import com.ayang818.trainbooking.service.RouteService;
@@ -20,7 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RouteServiceImpl implements RouteService {
     private static final Logger LOGGER = LoggerFactory.getLogger(RouteServiceImpl.class);
     // 站点的缓存
-    private static final Map<Integer, Station> HASH_MAP = new ConcurrentHashMap<>();
+    private static final Map<Integer, Station> STATION_MAP = new ConcurrentHashMap<>();
+    private static final Map<Integer, Route> ROUTE_MAP = new ConcurrentHashMap<>();
 
     @Autowired
     RouteMapper routeMapper;
@@ -53,7 +53,13 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public Route selectById(Integer routeId) {
-        return routeMapper.selectById(routeId);
+        if (ROUTE_MAP.containsKey(routeId)) {
+            return ROUTE_MAP.get(routeId);
+        } else {
+            Route route = routeMapper.selectById(routeId);
+            ROUTE_MAP.put(routeId, route);
+            return route;
+        }
     }
 
     @Override
@@ -63,13 +69,13 @@ public class RouteServiceImpl implements RouteService {
         int index = 0;
         for (String code : routeCodes) {
             Integer id = Integer.valueOf(code);
-            if (HASH_MAP.containsKey(id)) {
-                routeDetails.append(HASH_MAP.get(id).getStationName());
+            if (STATION_MAP.containsKey(id)) {
+                routeDetails.append(STATION_MAP.get(id).getStationName());
             } else {
                 LOGGER.info("未击中站点缓存");
                 Station station = stationService.selectOne(id);
                 routeDetails.append(station.getStationName());
-                HASH_MAP.put(id, station);
+                STATION_MAP.put(id, station);
             }
             if (index != routeCodes.length - 1) {
                 routeDetails.append("-->");
@@ -90,8 +96,8 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public Station parseStationById(String startStation) {
         Integer id = Integer.valueOf(startStation);
-        if (HASH_MAP.containsKey(id)) {
-            return HASH_MAP.get(id);
+        if (STATION_MAP.containsKey(id)) {
+            return STATION_MAP.get(id);
         } else {
             return stationService.selectOne(id);
         }

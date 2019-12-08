@@ -2,9 +2,6 @@ package com.ayang818.trainbooking.dto;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
 /**
  * @ClassName SearchDto
  * @Dessription TODO
