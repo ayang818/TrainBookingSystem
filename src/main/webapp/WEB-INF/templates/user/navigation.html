@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<body>
+<div th:fragment="nav">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">火车订票系统 · 用户端</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/user/searchTicket">查询票</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" th:text="'欢迎, '+${session.userName}"></a></li>
+                <li><a href="/login">退出登录</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</body>

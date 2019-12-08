@@ -6,6 +6,7 @@ import com.ayang818.trainbooking.model.TrainNumber;
 import com.ayang818.trainbooking.service.RouteService;
 import com.ayang818.trainbooking.service.StationService;
 import com.ayang818.trainbooking.service.TrainNumberService;
+import com.ayang818.trainbooking.service.impl.RouteServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,10 @@ public class TrainNumberController {
     @GetMapping("/admin/addTrainNumber")
     public String getAddTrainNumber(HttpServletRequest request, HttpServletResponse response) {
         List<Route> routes = routeService.listRoutes();
+        for (Route route : routes) {
+            route.setStartStation(routeService.parseStationById(route.getStartStation()).getStationName());
+            route.setEndStation(routeService.parseStationById(route.getEndStation()).getStationName());
+        }
         request.getSession().setAttribute("routes", routes);
         return "admin/addTrainNumber";
     }

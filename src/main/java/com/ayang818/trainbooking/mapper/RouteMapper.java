@@ -1,5 +1,6 @@
 package com.ayang818.trainbooking.mapper;
 
+import com.ayang818.trainbooking.dto.SearchDto;
 import com.ayang818.trainbooking.model.Route;
 import org.apache.ibatis.annotations.*;
 
@@ -19,4 +20,7 @@ public interface RouteMapper {
 
     @Select("select * from route where id = #{routeId}")
     Route selectById(Integer routeId);
+
+    @Select("select * from route where start_station=#{startStation} and end_station=#{endStation}")
+    Route selectByStartAndEnd(SearchDto searchDto);
 }

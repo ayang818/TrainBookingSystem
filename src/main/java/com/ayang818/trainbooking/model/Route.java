@@ -2,9 +2,6 @@ package com.ayang818.trainbooking.model;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 public class Route {
     private Integer id;

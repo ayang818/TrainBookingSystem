@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../static/css/index.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <title>站点概览</title>
+</head>
+<body>
+<div>
+    <div th:include="user/navigation :: nav"></div>
+</div>
+<div class="col-lg-3 col-md-3 col-xs-3"></div>
+<div class="col-lg-6 col-md-6 col-xs-6">
+    <h1>查询余票</h1>
+    <form class="form-inline" method="post" href="/user/searchTicket">
+        <div class="form-group">
+            <label for="startStation">起始站</label>
+            <select class="form-control" id="startStation" name="startStation">
+                <option th:each="station : ${session.stations}" th:value="${station.getId()}" th:text="${station.getStationName()}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="endStation">终点站</label>
+            <select class="form-control" id="endStation" name="endStation">
+                <option th:each="station : ${session.stations}" th:value="${station.getId()}" th:text="${station.getStationName()}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="startTime">发车时间</label>
+            <input type="date" class="form-control" id="startTime" name="startTime">
+        </div>
+        <button type="submit" class="btn btn-primary">查询</button>
+    </form>
+</div>
+<div class="col-lg-3 col-md-3 col-xs-3"></div>
+</body>
+</html>

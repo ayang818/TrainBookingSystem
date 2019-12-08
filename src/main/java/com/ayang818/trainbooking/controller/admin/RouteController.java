@@ -47,14 +47,14 @@ public class RouteController {
                 // 找到所有子路径
                 for (int k = j; k < j+i; k++) {
                     if (k == j) {
-                        startStationId = Integer.valueOf(stations[k]);
-                        Station station = stationService.selectOne(startStationId);
-                        route.setStartStation(station.getStationName());
+                        //startStationId = Integer.valueOf(stations[k]);
+                        //Station station = stationService.selectOne(startStationId);
+                        route.setStartStation(stations[k]);
                     }
                     if (k == j+i-1) {
-                        endStationId = Integer.valueOf(stations[k]);
-                        Station station = stationService.selectOne(endStationId);
-                        route.setEndStation(station.getStationName());
+                        //endStationId = Integer.valueOf(stations[k]);
+                        //Station station = stationService.selectOne(endStationId);
+                        route.setEndStation(stations[k]);
                     }
                     stringBuilder.append(stations[k]);
                     if (k != j+i-1) {
@@ -69,11 +69,17 @@ public class RouteController {
         LOGGER.info("最长路线为{}, 共解析出{}条路线", Arrays.toString(stations), count*2);
         for (Route route : routes) {
             StringBuilder reverseString = new StringBuilder();
-            for (int i = 0; i < route.getRouteCode().length(); i++) {
-                reverseString.append(route.getRouteCode().charAt(i));
+            String[] code = route.getRouteCode().split("-");
+            // 逆序code
+            for (int i = code.length - 1; i >= 0; i--) {
+                reverseString.append(code[i]);
+                if (i != 0) {
+                    reverseString.append("-");
+                }
             }
             // 添加逆序的路线
             routeService.addRoute(route.getEndStation(), route.getStartStation(), reverseString.toString());
+            // 添加正序路线
             routeService.addRoute(route.getStartStation(), route.getEndStation(), route.getRouteCode());
         }
         return "redirect:/admin/addRoute";
@@ -84,6 +90,10 @@ public class RouteController {
         List<Route> routes = routeService.listRoutes();
         LOGGER.info("开始解析路线途经站点");
         for (Route route : routes) {
+            Station startStation = routeService.parseStationById(route.getStartStation());
+            route.setStartStation(startStation.getStationName());
+            Station endStation = routeService.parseStationById(route.getEndStation());
+            route.setEndStation(endStation.getStationName());
             String routeCode = route.getRouteCode();
             route.setStationDetails(routeService.parseCodeToDetails(routeCode));
         }

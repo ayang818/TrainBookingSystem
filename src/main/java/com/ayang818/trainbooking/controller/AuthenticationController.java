@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 
 /**
  * @ClassName AuthenticationController
@@ -53,7 +54,11 @@ public class AuthenticationController {
         }
         LOGGER.info("用户:{}登录成功", username);
         request.getSession().setAttribute("userName", username);
-        return "redirect:admin/station";
+        if (Objects.equals(user.getType(), UserType.ADMIN)) {
+            return "redirect:admin/station";
+        } else {
+            return "redirect:user/searchTicket";
+        }
     }
 
     @GetMapping("/register")

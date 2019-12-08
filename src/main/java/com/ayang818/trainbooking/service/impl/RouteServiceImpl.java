@@ -1,7 +1,8 @@
 package com.ayang818.trainbooking.service.impl;
 
-import com.ayang818.trainbooking.controller.admin.RouteController;
+import com.ayang818.trainbooking.dto.SearchDto;
 import com.ayang818.trainbooking.mapper.RouteMapper;
+import com.ayang818.trainbooking.mapper.StationMapper;
 import com.ayang818.trainbooking.model.Route;
 import com.ayang818.trainbooking.model.Station;
 import com.ayang818.trainbooking.service.RouteService;
@@ -76,5 +77,23 @@ public class RouteServiceImpl implements RouteService {
             index++;
         }
         return  routeDetails.toString();
+    }
+
+    @Override
+    public Route selectByStartAndEnd(Integer startStation, Integer endStation) {
+        SearchDto searchDto = new SearchDto();
+        searchDto.setStartStation(startStation);
+        searchDto.setEndStation(endStation);
+        return routeMapper.selectByStartAndEnd(searchDto);
+    }
+
+    @Override
+    public Station parseStationById(String startStation) {
+        Integer id = Integer.valueOf(startStation);
+        if (HASH_MAP.containsKey(id)) {
+            return HASH_MAP.get(id);
+        } else {
+            return stationService.selectOne(id);
+        }
     }
 }
