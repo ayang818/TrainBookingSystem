@@ -19,7 +19,7 @@ import java.util.Objects;
 
 /**
  * @ClassName AuthenticationController
- * @Dessription TODO
+ * @Description 登陆授权认证控制器
  * @Author 杨丰畅
  * @Date 2019/12/3 23:27
  **/

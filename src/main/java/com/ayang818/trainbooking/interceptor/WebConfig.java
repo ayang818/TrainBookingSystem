@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @ClassName WebConfig
- * @Dessription TODO
+ * @Description 配置拦截器
  * @Author 杨丰畅
  * @Date 2019/12/4 20:41
  **/

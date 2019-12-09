@@ -4,6 +4,11 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+
+/**
+ * @desc station数据库映射
+ * @author 杨丰畅
+ */
 @Data
 public class TrainNumber {
     private Integer id;

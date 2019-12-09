@@ -6,6 +6,10 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @desc 路线数据库操作
+ * @author 杨丰畅
+ */
 @Mapper
 public interface RouteMapper {
     @Insert("insert into route(start_station, end_station, route_code) values(#{startStation}, #{endStation}, #{routeCode})")

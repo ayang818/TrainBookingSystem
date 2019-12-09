@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @desc 用户操作业务逻辑封装
+ * @author 杨丰畅
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

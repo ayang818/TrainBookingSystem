@@ -5,6 +5,10 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @desc 站点数据库操作
+ * @author 杨丰畅
+ */
 @Mapper
 public interface StationMapper {
     @Insert("insert into station(station_name) values(#{stationName})")

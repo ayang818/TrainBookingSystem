@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @ClassName SessionIntercepter
- * @Dessription TODO
+ * @Description 对前端转发的请求预处理的拦截器
  * @Author 杨丰畅
  * @Date 2019/12/4 20:42
  **/
@@ -24,7 +24,7 @@ public class SessionInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+        // request.getParameterMap();
        return true;
     }
 

@@ -7,7 +7,6 @@ import com.ayang818.trainbooking.model.TrainNumber;
 import com.ayang818.trainbooking.service.RouteService;
 import com.ayang818.trainbooking.service.SearchTicketService;
 import com.ayang818.trainbooking.service.StationService;
-import com.ayang818.trainbooking.service.impl.RouteServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
  * @ClassName SearchController
- * @Dessription TODO
+ * @Description 用户查询相关控制器
  * @Author 杨丰畅
  * @Date 2019/12/8 20:17
  **/

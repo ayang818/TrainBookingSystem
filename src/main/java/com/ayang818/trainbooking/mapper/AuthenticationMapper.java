@@ -9,6 +9,10 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * @desc 登陆注册数据库操作
+ * @author 杨丰畅
+ */
 @Mapper
 public interface AuthenticationMapper {
     @Select("select * from user where username=#{username} and password=#{password} and type=#{type}")

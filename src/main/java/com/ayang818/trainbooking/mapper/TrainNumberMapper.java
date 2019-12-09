@@ -9,11 +9,9 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * @ClassName TrainNumberMapper
- * @Dessription TODO
- * @Author 杨丰畅
- * @Date 2019/12/7 16:32
- **/
+ * @desc 车次数据库操作
+ * @author 杨丰畅
+ */
 @Mapper
 public interface TrainNumberMapper {
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @ClassName SearchTicketService
- * @Dessription TODO
+ * @Description TODO
  * @Author 杨丰畅
  * @Date 2019/12/8 22:51
  **/

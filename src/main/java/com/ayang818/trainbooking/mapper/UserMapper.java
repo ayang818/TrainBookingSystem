@@ -6,6 +6,10 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * @desc 用户数据库操作
+ * @author 杨丰畅
+ */
 @Mapper
 public interface UserMapper {
     @Select("select * from user")

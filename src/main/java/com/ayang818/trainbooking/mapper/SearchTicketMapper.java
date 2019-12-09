@@ -8,11 +8,9 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * @ClassName SearchTicketMapper
- * @Dessription TODO
- * @Author 杨丰畅
- * @Date 2019/12/8 22:53
- **/
+ * @desc 用户查询数据库操作
+ * @author 杨丰畅
+ */
 public interface SearchTicketMapper {
 
     @Select("select * from train_number where route_id=#{routeId} and start_time like #{startTime}")

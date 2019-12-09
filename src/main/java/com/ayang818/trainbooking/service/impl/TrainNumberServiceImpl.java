@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @ClassName TrainNumberServiceImpl
- * @Dessription TODO
+ * @Description 车次操作业务逻辑封装
  * @Author 杨丰畅
  * @Date 2019/12/5 23:53
  **/

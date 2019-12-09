@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @ClassName JwtUtil
- * @Dessription TODO
+ * @Description json web token 工具类
  * @Author 杨丰畅
  * @Date 2019/12/4 19:36
  **/

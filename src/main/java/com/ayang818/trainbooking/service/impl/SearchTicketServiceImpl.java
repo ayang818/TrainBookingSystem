@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @ClassName SearchTicketServiceImpl
- * @Dessription TODO
+ * @Description 用户查询票业务逻辑封装
  * @Author 杨丰畅
  * @Date 2019/12/8 22:52
  **/
