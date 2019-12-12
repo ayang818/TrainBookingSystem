@@ -16,7 +16,10 @@
             <form action="/login" method="post">
                 <div class="form-group">
                     <label>用户名</label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="输入用户名" aria-describedby="basic-addon1">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="输入用户名" aria-describedby="basic-addon1"
+                           data-bv-notEmpty="true"
+                           data-bv-stringlength="true"
+                           data-bv-stringlength-min="6">
                 </div>
                 <div class="form-group">
                     <label>密码</label>

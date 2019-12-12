@@ -85,4 +85,9 @@ public class AuthenticationController {
         LOGGER.info("用户:{}注册成功, 邮箱:{}", username, email);
         return "redirect:login";
     }
+
+    @GetMapping("/")
+    public String redirect() {
+        return "login";
+    }
 }
