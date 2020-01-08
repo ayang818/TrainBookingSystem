@@ -18,7 +18,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <spring.version>5.2.1.RELEASE</spring.version>
     <slf4j.version>1.6.6</slf4j.version>
-    <log4j.version>1.2.12</log4j.version>
+    <log4j.version>1.2.17</log4j.version>
     <mysql.version>8.0.18</mysql.version>
     <mybatis.version>3.5.3</mybatis.version>
     <jjwt.version>0.9.1</jjwt.version>
